@@ -43,7 +43,7 @@ if args["bump"] is True:
     if args["repo"][-1] != "/":
         args["repo"] += "/"
 
-    init_file = INPUT + "io_scene_gltf2_msfs/__init__.py"
+    init_file = INPUT + "io_scene_gltf2_msfs_kh/__init__.py"
     if not isfile(init_file):
         print("Can't find __init__ file")
         sys.exit()
@@ -104,7 +104,7 @@ if args["repo"] is not None:
             copyfile(root + "/" + file, new_dir + "/" + file)
 
     # Check that files removed are also removed in blender repo
-    for root, dirs, files in walk(join(args["repo"], "io_scene_gltf2_msfs")):
+    for root, dirs, files in walk(join(args["repo"], "io_scene_gltf2_msfs_kh")):
         for file in files:
             if not isfile(join(INPUT, join(root[len(args["repo"]) :], file))):
                 print(join(root[len(args["repo"]) :], file))
