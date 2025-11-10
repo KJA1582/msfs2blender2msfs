@@ -77,9 +77,11 @@ def array_to_accessor(
         amin = np.amin(array, axis=0).tolist()
 
     return gltf2_io.Accessor(
-        buffer_view=gltf2_io_binary_data.BinaryData(array.tobytes())
-        if create_buffer_view
-        else array,  # For optimized meshes, we convert the data into bytes later
+        buffer_view=(
+            gltf2_io_binary_data.BinaryData(array.tobytes())
+            if create_buffer_view
+            else array
+        ),  # For optimized meshes, we convert the data into bytes later
         byte_offset=None,
         component_type=component_type,
         count=len(array),
@@ -102,9 +104,9 @@ def __gather_position(blender_primitive, export_settings):
             component_type=gltf2_io_constants.ComponentType.Float,
             data_type=gltf2_io_constants.DataType.Vec3,
             include_max_and_min=True,
-            create_buffer_view=False
-            if export_settings["emulate_asobo_optimization"]
-            else True,
+            create_buffer_view=(
+                False if export_settings["emulate_asobo_optimization"] else True
+            ),
             emulate_asobo_optimization=export_settings["emulate_asobo_optimization"],
         )
     }
@@ -134,9 +136,9 @@ def __gather_normal(blender_primitive, export_settings):
             normal,
             component_type=component_type,
             data_type=data_type,
-            create_buffer_view=False
-            if export_settings["emulate_asobo_optimization"]
-            else True,
+            create_buffer_view=(
+                False if export_settings["emulate_asobo_optimization"] else True
+            ),
             emulate_asobo_optimization=export_settings["emulate_asobo_optimization"],
         )
     }
@@ -165,9 +167,9 @@ def __gather_tangent(blender_primitive, export_settings):
             tangent,
             component_type=component_type,
             data_type=gltf2_io_constants.DataType.Vec4,
-            create_buffer_view=False
-            if export_settings["emulate_asobo_optimization"]
-            else True,
+            create_buffer_view=(
+                False if export_settings["emulate_asobo_optimization"] else True
+            ),
             emulate_asobo_optimization=export_settings["emulate_asobo_optimization"],
         )
     }
@@ -194,9 +196,9 @@ def __gather_texcoord(blender_primitive, export_settings):
                 tex_coord,
                 component_type=component_type,
                 data_type=gltf2_io_constants.DataType.Vec2,
-                create_buffer_view=False
-                if export_settings["emulate_asobo_optimization"]
-                else True,
+                create_buffer_view=(
+                    False if export_settings["emulate_asobo_optimization"] else True
+                ),
                 emulate_asobo_optimization=export_settings[
                     "emulate_asobo_optimization"
                 ],
@@ -244,9 +246,11 @@ def __gather_colors(
                 colors = colors.astype(np.uint16)
 
             attributes[color_id] = gltf2_io.Accessor(
-                buffer_view=gltf2_io_binary_data.BinaryData(colors.tobytes())
-                if not export_settings["emulate_asobo_optimization"]
-                else colors,
+                buffer_view=(
+                    gltf2_io_binary_data.BinaryData(colors.tobytes())
+                    if not export_settings["emulate_asobo_optimization"]
+                    else colors
+                ),
                 byte_offset=None,
                 component_type=component_type,
                 count=len(colors),
@@ -255,9 +259,9 @@ def __gather_colors(
                 max=None,
                 min=None,
                 name=None,
-                normalized=True
-                if not export_settings["emulate_asobo_optimization"]
-                else None,  # MSFS doesn't support normalized vertex colors
+                normalized=(
+                    True if not export_settings["emulate_asobo_optimization"] else None
+                ),  # MSFS doesn't support normalized vertex colors
                 sparse=None,
                 type=gltf2_io_constants.DataType.Vec4,
             )
@@ -294,9 +298,9 @@ def __gather_skins(blender_primitive, export_settings):
                 internal_joint,
                 component_type,
                 data_type=gltf2_io_constants.DataType.Vec4,
-                create_buffer_view=False
-                if export_settings["emulate_asobo_optimization"]
-                else True,
+                create_buffer_view=(
+                    False if export_settings["emulate_asobo_optimization"] else True
+                ),
                 emulate_asobo_optimization=export_settings[
                     "emulate_asobo_optimization"
                 ],
@@ -341,9 +345,9 @@ def __gather_skins(blender_primitive, export_settings):
                 internal_weight,
                 component_type=weight_component_type,
                 data_type=weight_data_type,
-                create_buffer_view=False
-                if export_settings["emulate_asobo_optimization"]
-                else True,
+                create_buffer_view=(
+                    False if export_settings["emulate_asobo_optimization"] else True
+                ),
                 emulate_asobo_optimization=export_settings[
                     "emulate_asobo_optimization"
                 ],

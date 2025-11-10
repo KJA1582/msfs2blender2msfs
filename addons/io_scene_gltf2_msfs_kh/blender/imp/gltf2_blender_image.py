@@ -190,7 +190,9 @@ def convert_dds(gltf, image):
                         ):  # community texture always overrides official files
                             config_file = pathlib.Path(root).parent / "aircraft.cfg"
                             if config_file.exists():
-                                config = configparser.ConfigParser(strict=False, comment_prefixes=(";", "//"))
+                                config = configparser.ConfigParser(
+                                    strict=False, comment_prefixes=(";", "//")
+                                )
                                 config.read_file(codecs.open(config_file, "r", "utf-8"))
                                 if "VARIATION" in [
                                     i.upper() for i in config.sections()

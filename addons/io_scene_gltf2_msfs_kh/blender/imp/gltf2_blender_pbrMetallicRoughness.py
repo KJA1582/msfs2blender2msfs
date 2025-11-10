@@ -474,12 +474,16 @@ def base_color(
             tex_info=detail_color_texture,
             label="DETAIL COLOR" if not is_diffuse else "DETAIL DIFFUSE",
             location=(x, y) if base_color_texture is None else (x, y - 150),
-            color_socket=detail_color_socket
-            if base_color_texture is not None
-            else texture_color_socket,
-            alpha_socket=detail_alpha_socket
-            if base_color_texture is not None
-            else base_alpha_socket,
+            color_socket=(
+                detail_color_socket
+                if base_color_texture is not None
+                else texture_color_socket
+            ),
+            alpha_socket=(
+                detail_alpha_socket
+                if base_color_texture is not None
+                else base_alpha_socket
+            ),
         )
 
     mh.mat.msfs_base_color_factor = base_color_factor
@@ -588,9 +592,9 @@ def metallic_roughness(mh: MaterialHelper, location, metallic_socket, roughness_
             label="DETAIL METALLIC ROUGHNESS",
             location=(x, y) if comp_texture is None else (x, y - 150),
             is_data=True,
-            color_socket=detail_color_socket
-            if comp_texture is not None
-            else color_socket,
+            color_socket=(
+                detail_color_socket if comp_texture is not None else color_socket
+            ),
         )
 
     mh.mat.msfs_roughness_factor = rough_factor
@@ -678,9 +682,9 @@ def normal(mh: MaterialHelper, location, normal_socket):
             label="DETAIL NORMALMAP",
             location=(x, y) if normal_texture is None else (x, y - 150),
             is_data=True,
-            color_socket=detail_color_socket
-            if normal_texture is not None
-            else color_socket,
+            color_socket=(
+                detail_color_socket if normal_texture is not None else color_socket
+            ),
         )
 
 
@@ -767,9 +771,9 @@ def occlusion(mh: MaterialHelper, location, occlusion_socket):
             label="DETAIL OCCLUSION",
             location=(x, y) if comp_texture is None else (x, y - 150),
             is_data=True,
-            color_socket=detail_color_socket
-            if comp_texture is not None
-            else color_socket,
+            color_socket=(
+                detail_color_socket if comp_texture is not None else color_socket
+            ),
         )
 
 

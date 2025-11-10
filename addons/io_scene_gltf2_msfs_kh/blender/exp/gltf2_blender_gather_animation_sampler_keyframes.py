@@ -16,7 +16,10 @@ import bpy
 import mathutils
 import typing
 
-from io_scene_gltf2_msfs_kh.blender.exp.gltf2_blender_gather_cache import cached, bonecache
+from io_scene_gltf2_msfs_kh.blender.exp.gltf2_blender_gather_cache import (
+    cached,
+    bonecache,
+)
 from io_scene_gltf2_msfs_kh.blender.com import gltf2_blender_math
 from io_scene_gltf2_msfs_kh.blender.exp import gltf2_blender_get
 from io_scene_gltf2_msfs_kh.blender.exp.gltf2_blender_gather_drivers import (

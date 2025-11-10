@@ -24,7 +24,9 @@ from io_scene_gltf2_msfs_kh.blender.exp.gltf2_blender_gather_sampler import (
     detect_manual_uv_wrapping,
 )
 from io_scene_gltf2_msfs_kh.io.com.gltf2_io_extensions import Extension
-from io_scene_gltf2_msfs_kh.io.exp.gltf2_io_user_extensions import export_user_extensions
+from io_scene_gltf2_msfs_kh.io.exp.gltf2_io_user_extensions import (
+    export_user_extensions,
+)
 
 
 # blender_shader_sockets determine the texture and primary_socket determines

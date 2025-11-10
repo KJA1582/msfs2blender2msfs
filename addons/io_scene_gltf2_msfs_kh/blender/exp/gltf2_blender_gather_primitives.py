@@ -77,9 +77,11 @@ def gather_primitives(
         primitive = gltf2_io.MeshPrimitive(
             attributes=internal_primitive["attributes"],
             extensions=None,
-            extras=None
-            if not export_settings["emulate_asobo_optimization"]
-            else internal_primitive["extras"],
+            extras=(
+                None
+                if not export_settings["emulate_asobo_optimization"]
+                else internal_primitive["extras"]
+            ),
             indices=internal_primitive["indices"],
             material=material,
             mode=internal_primitive["mode"],
@@ -131,16 +133,16 @@ def __gather_cache_primitives(
                 "extras": {"ASOBO_primitive": {}},
             }
             # Set ASOBO_primitive data
-            primitive["extras"]["ASOBO_primitive"][
-                "BaseVertexIndex"
-            ] = internal_primitive.get("BaseVertexIndex")
+            primitive["extras"]["ASOBO_primitive"]["BaseVertexIndex"] = (
+                internal_primitive.get("BaseVertexIndex")
+            )
             primitive["extras"]["ASOBO_primitive"]["PrimitiveCount"] = (
                 primitive.get("indices").count // 3
             )
             primitive["extras"]["ASOBO_primitive"]["StartIndex"] = None
-            primitive["extras"]["ASOBO_primitive"][
-                "VertexType"
-            ] = internal_primitive.get("VertexType")
+            primitive["extras"]["ASOBO_primitive"]["VertexType"] = (
+                internal_primitive.get("VertexType")
+            )
             primitive["extras"]["ASOBO_primitive"]["VertexVersion"] = 2
         else:
             primitive = {
@@ -248,19 +250,21 @@ def __gather_targets(blender_primitive, blender_mesh, modifiers, export_settings
                     internal_target_position = blender_primitive["attributes"][
                         target_position_id
                     ]
-                    target[
-                        "POSITION"
-                    ] = gltf2_blender_gather_primitive_attributes.array_to_accessor(
-                        internal_target_position,
-                        component_type=gltf2_io_constants.ComponentType.Float,
-                        data_type=gltf2_io_constants.DataType.Vec3,
-                        include_max_and_min=True,
-                        create_buffer_view=False
-                        if export_settings["emulate_asobo_optimization"]
-                        else True,
-                        emulate_asobo_optimization=export_settings[
-                            "emulate_asobo_optimization"
-                        ],
+                    target["POSITION"] = (
+                        gltf2_blender_gather_primitive_attributes.array_to_accessor(
+                            internal_target_position,
+                            component_type=gltf2_io_constants.ComponentType.Float,
+                            data_type=gltf2_io_constants.DataType.Vec3,
+                            include_max_and_min=True,
+                            create_buffer_view=(
+                                False
+                                if export_settings["emulate_asobo_optimization"]
+                                else True
+                            ),
+                            emulate_asobo_optimization=export_settings[
+                                "emulate_asobo_optimization"
+                            ],
+                        )
                     )
 
                     if (
@@ -273,18 +277,20 @@ def __gather_targets(blender_primitive, blender_mesh, modifiers, export_settings
                         internal_target_normal = blender_primitive["attributes"][
                             target_normal_id
                         ]
-                        target[
-                            "NORMAL"
-                        ] = gltf2_blender_gather_primitive_attributes.array_to_accessor(
-                            internal_target_normal,
-                            component_type=gltf2_io_constants.ComponentType.Float,
-                            data_type=gltf2_io_constants.DataType.Vec3,
-                            create_buffer_view=False
-                            if export_settings["emulate_asobo_optimization"]
-                            else True,
-                            emulate_asobo_optimization=export_settings[
-                                "emulate_asobo_optimization"
-                            ],
+                        target["NORMAL"] = (
+                            gltf2_blender_gather_primitive_attributes.array_to_accessor(
+                                internal_target_normal,
+                                component_type=gltf2_io_constants.ComponentType.Float,
+                                data_type=gltf2_io_constants.DataType.Vec3,
+                                create_buffer_view=(
+                                    False
+                                    if export_settings["emulate_asobo_optimization"]
+                                    else True
+                                ),
+                                emulate_asobo_optimization=export_settings[
+                                    "emulate_asobo_optimization"
+                                ],
+                            )
                         )
 
                     if (
@@ -296,18 +302,20 @@ def __gather_targets(blender_primitive, blender_mesh, modifiers, export_settings
                         internal_target_tangent = blender_primitive["attributes"][
                             target_tangent_id
                         ]
-                        target[
-                            "TANGENT"
-                        ] = gltf2_blender_gather_primitive_attributes.array_to_accessor(
-                            internal_target_tangent,
-                            component_type=gltf2_io_constants.ComponentType.Float,
-                            data_type=gltf2_io_constants.DataType.Vec3,
-                            create_buffer_view=False
-                            if export_settings["emulate_asobo_optimization"]
-                            else True,
-                            emulate_asobo_optimization=export_settings[
-                                "emulate_asobo_optimization"
-                            ],
+                        target["TANGENT"] = (
+                            gltf2_blender_gather_primitive_attributes.array_to_accessor(
+                                internal_target_tangent,
+                                component_type=gltf2_io_constants.ComponentType.Float,
+                                data_type=gltf2_io_constants.DataType.Vec3,
+                                create_buffer_view=(
+                                    False
+                                    if export_settings["emulate_asobo_optimization"]
+                                    else True
+                                ),
+                                emulate_asobo_optimization=export_settings[
+                                    "emulate_asobo_optimization"
+                                ],
+                            )
                         )
                     targets.append(target)
                     morph_index += 1

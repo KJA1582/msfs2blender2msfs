@@ -18,6 +18,7 @@ from bpy.types import Material
 from ..com.gltf2_blender_material_helpers import get_gltf_node_name
 from . import gltf2_blender_flight_sim_material_utilities as utilities
 
+
 ### Material Creation
 def create_material(self, context):
     if not self.is_import:
@@ -251,12 +252,14 @@ def base_color(
             texture=detail_color_texture,
             label="DETAIL COLOR",
             location=(x, y) if base_color_texture is None else (x, y - 150),
-            color_socket=detail_color_socket
-            if base_color_texture is not None
-            else color_socket,
-            alpha_socket=detail_alpha_socket
-            if base_color_texture is not None
-            else base_alpha_socket,
+            color_socket=(
+                detail_color_socket if base_color_texture is not None else color_socket
+            ),
+            alpha_socket=(
+                detail_alpha_socket
+                if base_color_texture is not None
+                else base_alpha_socket
+            ),
         )
 
 
@@ -351,9 +354,9 @@ def metallic_roughness(mat, location, metallic_socket, roughness_socket):
             label="DETAIL METALLIC ROUGHNESS",
             location=(x, y) if comp_texture is None else (x, y - 150),
             is_data=True,
-            color_socket=detail_color_socket
-            if comp_texture is not None
-            else color_socket,
+            color_socket=(
+                detail_color_socket if comp_texture is not None else color_socket
+            ),
         )
 
 
@@ -412,9 +415,9 @@ def occlusion(mat, location, occlusion_socket):
             label="DETAIL OCCLUSION",
             location=(x, y) if comp_texture is None else (x, y - 150),
             is_data=True,
-            color_socket=detail_color_socket
-            if comp_texture is not None
-            else color_socket,
+            color_socket=(
+                detail_color_socket if comp_texture is not None else color_socket
+            ),
         )
 
 
@@ -473,9 +476,9 @@ def normal(mat, location, normal_socket):
             label="DETAIL NORMALMAP",
             location=(x, y) if normal_texture is None else (x, y - 150),
             is_data=True,
-            color_socket=detail_color_socket
-            if normal_texture is not None
-            else color_socket,
+            color_socket=(
+                detail_color_socket if normal_texture is not None else color_socket
+            ),
         )
 
 
@@ -654,9 +657,9 @@ def update_base_color_texture(self, context):
                 self,
                 location=locs["base_color"],
                 color_socket=bsdf_node.inputs["Base Color"],
-                alpha_socket=bsdf_node.inputs["Alpha"]
-                if not utilities.is_opaque(self)
-                else None,
+                alpha_socket=(
+                    bsdf_node.inputs["Alpha"] if not utilities.is_opaque(self) else None
+                ),
             )
 
             # update the blend mask

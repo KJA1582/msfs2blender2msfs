@@ -29,7 +29,9 @@ from io_scene_gltf2_msfs_kh.blender.exp import (
 from io_scene_gltf2_msfs_kh.blender.exp import gltf2_blender_gather_materials_unlit
 from ..com.gltf2_blender_extras import generate_extras
 from io_scene_gltf2_msfs_kh.blender.exp import gltf2_blender_get
-from io_scene_gltf2_msfs_kh.io.exp.gltf2_io_user_extensions import export_user_extensions
+from io_scene_gltf2_msfs_kh.io.exp.gltf2_io_user_extensions import (
+    export_user_extensions,
+)
 from io_scene_gltf2_msfs_kh.io.com.gltf2_io_debug import print_console
 
 
@@ -331,9 +333,9 @@ def __gather_clearcoat_extension(blender_material, export_settings):
         isinstance(clearcoat_roughness_socket, bpy.types.NodeSocket)
         and not clearcoat_roughness_socket.is_linked
     ):
-        clearcoat_extension[
-            "clearcoatRoughnessFactor"
-        ] = clearcoat_roughness_socket.default_value
+        clearcoat_extension["clearcoatRoughnessFactor"] = (
+            clearcoat_roughness_socket.default_value
+        )
     elif __has_image_node_from_socket(clearcoat_roughness_socket):
         clearcoat_extension["clearcoatRoughnessFactor"] = 1
         has_clearcoat_roughness_texture = True
@@ -351,27 +353,27 @@ def __gather_clearcoat_extension(blender_material, export_settings):
 
     if len(clearcoat_roughness_slots) > 0:
         if has_clearcoat_texture:
-            clearcoat_extension[
-                "clearcoatTexture"
-            ] = gltf2_blender_gather_texture_info.gather_texture_info(
-                clearcoat_socket,
-                clearcoat_roughness_slots,
-                export_settings,
+            clearcoat_extension["clearcoatTexture"] = (
+                gltf2_blender_gather_texture_info.gather_texture_info(
+                    clearcoat_socket,
+                    clearcoat_roughness_slots,
+                    export_settings,
+                )
             )
         if has_clearcoat_roughness_texture:
-            clearcoat_extension[
-                "clearcoatRoughnessTexture"
-            ] = gltf2_blender_gather_texture_info.gather_texture_info(
-                clearcoat_roughness_socket,
-                clearcoat_roughness_slots,
-                export_settings,
+            clearcoat_extension["clearcoatRoughnessTexture"] = (
+                gltf2_blender_gather_texture_info.gather_texture_info(
+                    clearcoat_roughness_socket,
+                    clearcoat_roughness_slots,
+                    export_settings,
+                )
             )
 
     if __has_image_node_from_socket(clearcoat_normal_socket):
-        clearcoat_extension[
-            "clearcoatNormalTexture"
-        ] = gltf2_blender_gather_texture_info.gather_material_normal_texture_info_class(
-            clearcoat_normal_socket, (clearcoat_normal_socket,), export_settings
+        clearcoat_extension["clearcoatNormalTexture"] = (
+            gltf2_blender_gather_texture_info.gather_material_normal_texture_info_class(
+                clearcoat_normal_socket, (clearcoat_normal_socket,), export_settings
+            )
         )
 
     return Extension("KHR_materials_clearcoat", clearcoat_extension, False)

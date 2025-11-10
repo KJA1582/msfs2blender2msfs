@@ -496,7 +496,7 @@ class ExportGLTF2_Base:
         self.will_save_settings = False
         if settings:
             try:
-                for (k, v) in settings.items():
+                for k, v in settings.items():
                     if (
                         k == "export_selected"
                     ):  # Back compatibility for export_selected --> use_selection
@@ -590,27 +590,27 @@ class ExportGLTF2_Base:
         export_settings["gltf_loose_points"] = self.use_mesh_vertices
 
         if self.is_draco_available:
-            export_settings[
-                "gltf_draco_mesh_compression"
-            ] = self.export_draco_mesh_compression_enable
-            export_settings[
-                "gltf_draco_mesh_compression_level"
-            ] = self.export_draco_mesh_compression_level
-            export_settings[
-                "gltf_draco_position_quantization"
-            ] = self.export_draco_position_quantization
-            export_settings[
-                "gltf_draco_normal_quantization"
-            ] = self.export_draco_normal_quantization
-            export_settings[
-                "gltf_draco_texcoord_quantization"
-            ] = self.export_draco_texcoord_quantization
-            export_settings[
-                "gltf_draco_color_quantization"
-            ] = self.export_draco_color_quantization
-            export_settings[
-                "gltf_draco_generic_quantization"
-            ] = self.export_draco_generic_quantization
+            export_settings["gltf_draco_mesh_compression"] = (
+                self.export_draco_mesh_compression_enable
+            )
+            export_settings["gltf_draco_mesh_compression_level"] = (
+                self.export_draco_mesh_compression_level
+            )
+            export_settings["gltf_draco_position_quantization"] = (
+                self.export_draco_position_quantization
+            )
+            export_settings["gltf_draco_normal_quantization"] = (
+                self.export_draco_normal_quantization
+            )
+            export_settings["gltf_draco_texcoord_quantization"] = (
+                self.export_draco_texcoord_quantization
+            )
+            export_settings["gltf_draco_color_quantization"] = (
+                self.export_draco_color_quantization
+            )
+            export_settings["gltf_draco_generic_quantization"] = (
+                self.export_draco_generic_quantization
+            )
         else:
             export_settings["gltf_draco_mesh_compression"] = False
 
@@ -1292,9 +1292,9 @@ class ImporterExporterPreferences(AddonPreferences):
             text="This tool automatically converts DDS images for usage " "in Blender"
         )
         row = box.row()
-        row.operator(
-            "wm.url_open", text="Download texconv.exe"
-        ).url = "https://github.com/microsoft/DirectXTex/releases/latest/download/texconv.exe"
+        row.operator("wm.url_open", text="Download texconv.exe").url = (
+            "https://github.com/microsoft/DirectXTex/releases/latest/download/texconv.exe"
+        )
         row = box.row()
         row.prop(self, "texconv_file", text="Path to texconv.exe")
 

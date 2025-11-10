@@ -77,6 +77,7 @@ def from_socket(
     :param shader_node_filter: should be a function(x: shader_node) -> bool
     :return: a list of shader nodes for which filter is true
     """
+
     # hide implementation (especially the search path)
     def __search_from_socket(
         start_socket: bpy.types.NodeSocket,

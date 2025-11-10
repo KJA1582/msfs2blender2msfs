@@ -95,7 +95,7 @@ class BlenderGlTF:
             # glTF after Yup2Zup: right = +X, forward = +Y, up = +Z
             # Blender: right = +X, forward = -Z, up = +Y
             # Need to carry Blender --> glTF after Yup2Zup
-            gltf.camera_correction = Quaternion((2 ** 0.5 / 2, 2 ** 0.5 / 2, 0.0, 0.0))
+            gltf.camera_correction = Quaternion((2**0.5 / 2, 2**0.5 / 2, 0.0, 0.0))
 
         else:
 

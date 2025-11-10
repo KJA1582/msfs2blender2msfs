@@ -32,7 +32,9 @@ from io_scene_gltf2_msfs_kh.io.com import gltf2_io
 from io_scene_gltf2_msfs_kh.io.com import gltf2_io_constants
 from io_scene_gltf2_msfs_kh.io.exp import gltf2_io_binary_data
 from . import gltf2_blender_export_keys
-from io_scene_gltf2_msfs_kh.io.exp.gltf2_io_user_extensions import export_user_extensions
+from io_scene_gltf2_msfs_kh.io.exp.gltf2_io_user_extensions import (
+    export_user_extensions,
+)
 
 
 @cached

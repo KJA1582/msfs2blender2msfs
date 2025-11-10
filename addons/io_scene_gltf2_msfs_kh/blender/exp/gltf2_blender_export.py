@@ -20,12 +20,16 @@ import traceback
 from io_scene_gltf2_msfs_kh.blender.com import gltf2_blender_json
 from io_scene_gltf2_msfs_kh.blender.exp import gltf2_blender_export_keys
 from io_scene_gltf2_msfs_kh.blender.exp import gltf2_blender_gather
-from io_scene_gltf2_msfs_kh.blender.exp.gltf2_blender_gltf2_exporter import GlTF2Exporter
+from io_scene_gltf2_msfs_kh.blender.exp.gltf2_blender_gltf2_exporter import (
+    GlTF2Exporter,
+)
 from io_scene_gltf2_msfs_kh.io.com.gltf2_io_debug import print_console, print_newline
 from io_scene_gltf2_msfs_kh.io.exp import gltf2_io_export
 from io_scene_gltf2_msfs_kh.io.exp import gltf2_io_draco_compression_extension
 from io_scene_gltf2_msfs_kh.io.exp import gltf2_io_asobo_buffer_views
-from io_scene_gltf2_msfs_kh.io.exp.gltf2_io_user_extensions import export_user_extensions
+from io_scene_gltf2_msfs_kh.io.exp.gltf2_io_user_extensions import (
+    export_user_extensions,
+)
 
 
 def save(context, export_settings):

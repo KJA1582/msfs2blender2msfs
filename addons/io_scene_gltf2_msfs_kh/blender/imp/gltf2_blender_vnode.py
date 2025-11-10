@@ -474,7 +474,7 @@ def pick_bone_rotation(gltf, bone_id, parent_rot):
         return None
 
     if gltf.import_settings["bone_heuristic"] == "BLENDER":
-        return Quaternion((2 ** 0.5 / 2, 2 ** 0.5 / 2, 0, 0))
+        return Quaternion((2**0.5 / 2, 2**0.5 / 2, 0, 0))
     elif gltf.import_settings["bone_heuristic"] in ["TEMPERANCE", "FORTUNE"]:
         return temperance(gltf, bone_id, parent_rot)
 

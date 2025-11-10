@@ -19,7 +19,9 @@ from io_scene_gltf2_msfs_kh.io.com import gltf2_io
 from io_scene_gltf2_msfs_kh.blender.exp import gltf2_blender_gather_animation_channels
 from io_scene_gltf2_msfs_kh.io.com.gltf2_io_debug import print_console
 from ..com.gltf2_blender_extras import generate_extras
-from io_scene_gltf2_msfs_kh.io.exp.gltf2_io_user_extensions import export_user_extensions
+from io_scene_gltf2_msfs_kh.io.exp.gltf2_io_user_extensions import (
+    export_user_extensions,
+)
 
 
 def gather_animations(
@@ -261,9 +263,7 @@ def __get_blender_actions(
                     continue
                 for strip in non_muted_strips:
                     blender_actions.append(strip.action)
-                    blender_tracks[
-                        strip.action.name
-                    ] = (
+                    blender_tracks[strip.action.name] = (
                         track.name
                     )  # Always set after possible active action -> None will be overwrite
                     action_on_type[strip.action.name] = "OBJECT"
@@ -297,9 +297,7 @@ def __get_blender_actions(
                     continue
                 for strip in non_muted_strips:
                     blender_actions.append(strip.action)
-                    blender_tracks[
-                        strip.action.name
-                    ] = (
+                    blender_tracks[strip.action.name] = (
                         track.name
                     )  # Always set after possible active action -> None will be overwrite
                     action_on_type[strip.action.name] = "SHAPEKEY"

@@ -58,7 +58,7 @@ class glTFImporter:
             "KHR_mesh_quantization",
             "KHR_draco_mesh_compression",
             "MSFT_texture_dds",
-            "ASOBO_unique_id"
+            "ASOBO_unique_id",
         ]
 
     @staticmethod

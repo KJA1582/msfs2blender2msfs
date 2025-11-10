@@ -20,7 +20,9 @@ from io_scene_gltf2_msfs_kh.io.com import gltf2_io
 from io_scene_gltf2_msfs_kh.blender.exp import gltf2_blender_gather_primitives
 from ..com.gltf2_blender_extras import generate_extras
 from io_scene_gltf2_msfs_kh.io.com.gltf2_io_debug import print_console
-from io_scene_gltf2_msfs_kh.io.exp.gltf2_io_user_extensions import export_user_extensions
+from io_scene_gltf2_msfs_kh.io.exp.gltf2_io_user_extensions import (
+    export_user_extensions,
+)
 
 
 @cached

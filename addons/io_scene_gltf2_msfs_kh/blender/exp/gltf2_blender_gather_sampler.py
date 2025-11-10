@@ -15,7 +15,9 @@
 import bpy
 from io_scene_gltf2_msfs_kh.io.com import gltf2_io
 from io_scene_gltf2_msfs_kh.blender.exp.gltf2_blender_gather_cache import cached
-from io_scene_gltf2_msfs_kh.io.exp.gltf2_io_user_extensions import export_user_extensions
+from io_scene_gltf2_msfs_kh.io.exp.gltf2_io_user_extensions import (
+    export_user_extensions,
+)
 from io_scene_gltf2_msfs_kh.io.com.gltf2_io_constants import TextureFilter, TextureWrap
 from io_scene_gltf2_msfs_kh.blender.exp.gltf2_blender_get import (
     previous_node,

@@ -39,7 +39,7 @@ class BlenderAnimation:
 
         # Push all actions onto NLA tracks with this animation's name
         track_name = gltf.data.animations[anim_idx].track_name
-        for (obj, action) in gltf.needs_stash:
+        for obj, action in gltf.needs_stash:
             simulate_stash(obj, track_name, action)
 
     @staticmethod

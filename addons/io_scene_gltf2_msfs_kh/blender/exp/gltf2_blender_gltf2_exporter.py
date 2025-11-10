@@ -27,7 +27,9 @@ from io_scene_gltf2_msfs_kh.io.exp import gltf2_io_binary_data
 from io_scene_gltf2_msfs_kh.io.exp import gltf2_io_buffer
 from io_scene_gltf2_msfs_kh.io.exp import gltf2_io_image_data
 from io_scene_gltf2_msfs_kh.blender.exp import gltf2_blender_export_keys
-from io_scene_gltf2_msfs_kh.io.exp.gltf2_io_user_extensions import export_user_extensions
+from io_scene_gltf2_msfs_kh.io.exp.gltf2_io_user_extensions import (
+    export_user_extensions,
+)
 
 MS_FILETIME_EPOCH = 116444736000000000
 

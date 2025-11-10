@@ -548,12 +548,12 @@ class AsoboBufferViews:
 
                 # Set attribute names and  buffer view indexes
                 for attribute in primitive.attributes:
-                    primitive.attributes[
-                        attribute
-                    ].buffer_view = self.BufferViews.index(blend_buffer_view)
-                    primitive.attributes[
-                        attribute
-                    ].name = f"{mesh.name}_vertices#0_{attribute}"
+                    primitive.attributes[attribute].buffer_view = (
+                        self.BufferViews.index(blend_buffer_view)
+                    )
+                    primitive.attributes[attribute].name = (
+                        f"{mesh.name}_vertices#0_{attribute}"
+                    )
 
         else:  # Mesh is not skinned
 
@@ -717,9 +717,9 @@ class AsoboBufferViews:
                 primitive.attributes[attribute].buffer_view = self.BufferViews.index(
                     vertex_nd_buffer_view
                 )
-                primitive.attributes[
-                    attribute
-                ].name = f"{mesh.name}_vertices#0_{attribute}"
+                primitive.attributes[attribute].name = (
+                    f"{mesh.name}_vertices#0_{attribute}"
+                )
 
             #
             # Distribute the shared accessors between all the primitives

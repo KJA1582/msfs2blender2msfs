@@ -21,7 +21,9 @@ from io_scene_gltf2_msfs_kh.blender.exp import gltf2_blender_gather_sampler
 from io_scene_gltf2_msfs_kh.blender.exp import gltf2_blender_search_node_tree
 from io_scene_gltf2_msfs_kh.blender.exp import gltf2_blender_gather_image
 from io_scene_gltf2_msfs_kh.io.com import gltf2_io_debug
-from io_scene_gltf2_msfs_kh.io.exp.gltf2_io_user_extensions import export_user_extensions
+from io_scene_gltf2_msfs_kh.io.exp.gltf2_io_user_extensions import (
+    export_user_extensions,
+)
 
 
 @cached

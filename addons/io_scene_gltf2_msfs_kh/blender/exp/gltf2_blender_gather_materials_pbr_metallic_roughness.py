@@ -21,7 +21,9 @@ from io_scene_gltf2_msfs_kh.blender.exp import (
 )
 from io_scene_gltf2_msfs_kh.blender.exp import gltf2_blender_get
 from io_scene_gltf2_msfs_kh.blender.exp.gltf2_blender_gather_cache import cached
-from io_scene_gltf2_msfs_kh.io.exp.gltf2_io_user_extensions import export_user_extensions
+from io_scene_gltf2_msfs_kh.io.exp.gltf2_io_user_extensions import (
+    export_user_extensions,
+)
 
 
 @cached
