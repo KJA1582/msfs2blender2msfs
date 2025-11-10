@@ -37,7 +37,7 @@ jobs:
       # Loads a cached build of Blender if available. If not available, this step
       # enqueues the /opt/blender directory to be cached after tests pass.
       - id: blender_cache
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         env:
           cache-name: cache-blender
         with:
