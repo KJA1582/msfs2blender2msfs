@@ -13,15 +13,15 @@
 # limitations under the License.
 
 bl_info = {
-    "name": "glTF 2.0 format for MSFS",
-    "author": "KHofmann, pepperoni505, Julien Duroure, Scurest, Norbert Nopper, Urs Hanselmann, Moritz Becher, Benjamin Schmithüsen, Jim Eckerlein, and many external contributors",
+    "name": "Microsoft Flight Simulator: glTF Import",
+    "author": "pepperoni505, Julien Duroure, Scurest, Norbert Nopper, Urs Hanselmann, Moritz Becher, Benjamin Schmithüsen, Jim Eckerlein, Kilian Hofmann, and many external contributors",
     "version": (2, 0, 0),
     "blender": (3, 6, 0),
     "location": "File > Import-Export",
-    "description": "Import-Export as glTF 2.0 for MSFS",
+    "description": "Import-Export as glTF 2.0 for MSFS/MSFS2024",
     "warning": "",
     "doc_url": "{BLENDER_MANUAL_URL}/addons/import_export/scene_gltf2.html",
-    "tracker_url": "https://github.com/flybywiresim/glTF-Blender-IO-MSFS/issues/",
+    "tracker_url": "https://github.com/KJA1582/msfs2blender2msfs/issues",
     "support": "COMMUNITY",
     "category": "Import-Export",
 }
@@ -112,7 +112,7 @@ def on_export_format_changed(self, context):
         return
     if not sfile.active_operator:
         return
-    if sfile.active_operator.bl_idname != "EXPORT_SCENE_OT_gltf_msfs":
+    if sfile.active_operator.bl_idname != "EXPORT_SCENE_OT_gltf_msfs_kh":
         return
 
     sfile.params.filename = ensure_filepath_matches_export_format(
@@ -728,7 +728,7 @@ class GLTFMSFS_PT_export_main(bpy.types.Panel):
         sfile = context.space_data
         operator = sfile.active_operator
 
-        return operator.bl_idname == "EXPORT_SCENE_OT_gltf_msfs"
+        return operator.bl_idname == "EXPORT_SCENE_OT_gltf_msfs_kh"
 
     def draw(self, context):
         layout = self.layout
@@ -757,7 +757,7 @@ class GLTFMSFS_PT_export_include(bpy.types.Panel):
         sfile = context.space_data
         operator = sfile.active_operator
 
-        return operator.bl_idname == "EXPORT_SCENE_OT_gltf_msfs"
+        return operator.bl_idname == "EXPORT_SCENE_OT_gltf_msfs_kh"
 
     def draw(self, context):
         layout = self.layout
@@ -788,7 +788,7 @@ class GLTFMSFS_PT_export_transform(bpy.types.Panel):
         sfile = context.space_data
         operator = sfile.active_operator
 
-        return operator.bl_idname == "EXPORT_SCENE_OT_gltf_msfs"
+        return operator.bl_idname == "EXPORT_SCENE_OT_gltf_msfs_kh"
 
     def draw(self, context):
         layout = self.layout
@@ -813,7 +813,7 @@ class GLTFMSFS_PT_export_geometry(bpy.types.Panel):
         sfile = context.space_data
         operator = sfile.active_operator
 
-        return operator.bl_idname == "EXPORT_SCENE_OT_gltf_msfs"
+        return operator.bl_idname == "EXPORT_SCENE_OT_gltf_msfs_kh"
 
     def draw(self, context):
         layout = self.layout
@@ -860,7 +860,7 @@ class GLTFMSFS_PT_export_geometry_compression(bpy.types.Panel):
         sfile = context.space_data
         operator = sfile.active_operator
         if operator.is_draco_available:
-            return operator.bl_idname == "EXPORT_SCENE_OT_gltf_msfs"
+            return operator.bl_idname == "EXPORT_SCENE_OT_gltf_msfs_kh"
 
     def draw_header(self, context):
         sfile = context.space_data
@@ -900,7 +900,7 @@ class GLTFMSFS_PT_export_animation(bpy.types.Panel):
         sfile = context.space_data
         operator = sfile.active_operator
 
-        return operator.bl_idname == "EXPORT_SCENE_OT_gltf_msfs"
+        return operator.bl_idname == "EXPORT_SCENE_OT_gltf_msfs_kh"
 
     def draw(self, context):
         layout = self.layout
@@ -925,7 +925,7 @@ class GLTFMSFS_PT_export_animation_export(bpy.types.Panel):
         sfile = context.space_data
         operator = sfile.active_operator
 
-        return operator.bl_idname == "EXPORT_SCENE_OT_gltf_msfs"
+        return operator.bl_idname == "EXPORT_SCENE_OT_gltf_msfs_kh"
 
     def draw_header(self, context):
         sfile = context.space_data
@@ -964,7 +964,7 @@ class GLTFMSFS_PT_export_animation_shapekeys(bpy.types.Panel):
         sfile = context.space_data
         operator = sfile.active_operator
 
-        return operator.bl_idname == "EXPORT_SCENE_OT_gltf_msfs"
+        return operator.bl_idname == "EXPORT_SCENE_OT_gltf_msfs_kh"
 
     def draw_header(self, context):
         sfile = context.space_data
@@ -999,7 +999,7 @@ class GLTFMSFS_PT_export_animation_skinning(bpy.types.Panel):
         sfile = context.space_data
         operator = sfile.active_operator
 
-        return operator.bl_idname == "EXPORT_SCENE_OT_gltf_msfs"
+        return operator.bl_idname == "EXPORT_SCENE_OT_gltf_msfs_kh"
 
     def draw_header(self, context):
         sfile = context.space_data
@@ -1031,7 +1031,7 @@ class GLTFMSFS_PT_export_user_extensions(bpy.types.Panel):
         operator = sfile.active_operator
 
         return (
-            operator.bl_idname == "EXPORT_SCENE_OT_gltf_msfs"
+            operator.bl_idname == "EXPORT_SCENE_OT_gltf_msfs_kh"
             and operator.has_active_extensions
         )
 
@@ -1053,7 +1053,7 @@ class GLTFMSFS_PT_export_msfs(bpy.types.Panel):
         sfile = context.space_data
         operator = sfile.active_operator
 
-        return operator.bl_idname == "EXPORT_SCENE_OT_gltf_msfs"
+        return operator.bl_idname == "EXPORT_SCENE_OT_gltf_msfs_kh"
 
     def draw(self, context):
         layout = self.layout
@@ -1070,7 +1070,7 @@ class ExportMSFSGLTF2(bpy.types.Operator, ExportGLTF2_Base, ExportHelper):
     """Export scene as glTF 2.0 file for MSFS"""
 
     bl_idname = "export_scene.gltf_msfs"
-    bl_label = "Export glTF 2.0 for MSFS"
+    bl_label = "Export glTF 2.0 for MSFS/MSFS2024"
 
     filename_ext = ""
 
@@ -1079,7 +1079,7 @@ class ExportMSFSGLTF2(bpy.types.Operator, ExportGLTF2_Base, ExportHelper):
 
 def menu_func_export(self, context):
     self.layout.operator(
-        ExportMSFSGLTF2.bl_idname, text="glTF 2.0 for MSFS (.glb/.gltf)"
+        ExportMSFSGLTF2.bl_idname, text="glTF 2.0 for MSFS/MSFS2024 (.glb/.gltf)"
     )
 
 
@@ -1087,7 +1087,7 @@ class ImportMSFSGLTF2(Operator, ImportHelper):
     """Load a glTF 2.0 file for MSFS"""
 
     bl_idname = "import_scene.gltf_msfs"
-    bl_label = "Import glTF 2.0 for MSFS"
+    bl_label = "Import glTF 2.0 for MSFS/MSFS2024"
     bl_options = {"REGISTER", "UNDO"}
 
     filter_glob: StringProperty(default="*.glb;*.gltf", options={"HIDDEN"})
@@ -1280,6 +1280,14 @@ class ImporterExporterPreferences(AddonPreferences):
         subtype="DIR_PATH",
     )
 
+    flight_sim_dir_2024: StringProperty(
+        name="Folder path",
+        description="Absolute path to the Flight Simulator 2024 installation "
+        "(where your Community and Official folders are)",
+        default="",
+        subtype="DIR_PATH",
+    )
+
     def draw(self, context):
         layout = self.layout
         box = layout.box()
@@ -1328,7 +1336,7 @@ class ImporterExporterPreferences(AddonPreferences):
         row.prop(self, "flight_sim_dir", text="Path to Flight Simulator (root level)")
         flightsim_path = pathlib.Path(self.flight_sim_dir)
         if (
-            self.flight_sim_dir == ""
+            (self.flight_sim_dir == "" and self.flight_sim_dir_2024 == "")
             or not flightsim_path.exists()
             or not flightsim_path.is_dir()
         ):
@@ -1338,10 +1346,30 @@ class ImporterExporterPreferences(AddonPreferences):
                 icon="ERROR",
             )
 
+        # Flight simulator installation directory
+        box = layout.box()
+        row = box.row()
+        row.prop(
+            self,
+            "flight_sim_dir_2024",
+            text="Path to Flight Simulator 2024 (root level)",
+        )
+        flightsim_path = pathlib.Path(self.flight_sim_dir_2024)
+        if (
+            (self.flight_sim_dir == "" and self.flight_sim_dir_2024 == "")
+            or not flightsim_path.exists()
+            or not flightsim_path.is_dir()
+        ):
+            row = box.row()
+            row.label(
+                text="No valid Flight Simulator 2024 path entered. Texture import is disabled",
+                icon="ERROR",
+            )
+
 
 def menu_func_import(self, context):
     self.layout.operator(
-        ImportMSFSGLTF2.bl_idname, text="glTF 2.0 for MSFS (.glb/.gltf)"
+        ImportMSFSGLTF2.bl_idname, text="glTF 2.0 for MSFS/MSFS2024 (.glb/.gltf)"
     )
 
 
