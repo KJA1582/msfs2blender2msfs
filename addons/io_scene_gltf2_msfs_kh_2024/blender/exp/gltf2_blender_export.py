@@ -23,7 +23,10 @@ from io_scene_gltf2_msfs_kh_2024.blender.exp import gltf2_blender_gather
 from io_scene_gltf2_msfs_kh_2024.blender.exp.gltf2_blender_gltf2_exporter import (
     GlTF2Exporter,
 )
-from io_scene_gltf2_msfs_kh_2024.io.com.gltf2_io_debug import print_console, print_newline
+from io_scene_gltf2_msfs_kh_2024.io.com.gltf2_io_debug import (
+    print_console,
+    print_newline,
+)
 from io_scene_gltf2_msfs_kh_2024.io.exp import gltf2_io_export
 from io_scene_gltf2_msfs_kh_2024.io.exp import gltf2_io_draco_compression_extension
 from io_scene_gltf2_msfs_kh_2024.io.exp import gltf2_io_asobo_buffer_views

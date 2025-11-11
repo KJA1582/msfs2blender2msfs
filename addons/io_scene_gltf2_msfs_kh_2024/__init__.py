@@ -13,7 +13,7 @@
 # limitations under the License.
 
 bl_info = {
-    "name": "Microsoft Flight Simulator: glTF Import",
+    "name": "Microsoft Flight Simulator 2024: glTF Import",
     "author": "pepperoni505, Julien Duroure, Scurest, Norbert Nopper, Urs Hanselmann, Moritz Becher, Benjamin Schmithüsen, Jim Eckerlein, Kilian Hofmann, and many external contributors",
     "version": (2, 0, 0),
     "blender": (3, 6, 0),
@@ -125,7 +125,9 @@ class ExportGLTF2_Base:
     # TODO: refactor to avoid boilerplate
 
     def __init__(self):
-        from io_scene_gltf2_msfs_kh_2024.io.com import gltf2_io_draco_compression_extension
+        from io_scene_gltf2_msfs_kh_2024.io.com import (
+            gltf2_io_draco_compression_extension,
+        )
 
         self.is_draco_available = gltf2_io_draco_compression_extension.dll_exists()
 
@@ -849,7 +851,9 @@ class GLTFMSFS_PT_export_geometry_compression(bpy.types.Panel):
     bl_options = {"DEFAULT_CLOSED"}
 
     def __init__(self):
-        from io_scene_gltf2_msfs_kh_2024.io.com import gltf2_io_draco_compression_extension
+        from io_scene_gltf2_msfs_kh_2024.io.com import (
+            gltf2_io_draco_compression_extension,
+        )
 
         self.is_draco_available = gltf2_io_draco_compression_extension.dll_exists(
             quiet=True

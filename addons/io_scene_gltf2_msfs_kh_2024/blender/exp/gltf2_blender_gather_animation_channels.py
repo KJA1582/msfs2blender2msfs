@@ -23,7 +23,9 @@ from ..com.gltf2_blender_data_path import (
 from io_scene_gltf2_msfs_kh_2024.io.com import gltf2_io
 from io_scene_gltf2_msfs_kh_2024.io.com import gltf2_io_debug
 from io_scene_gltf2_msfs_kh_2024.blender.exp.gltf2_blender_gather_cache import cached
-from io_scene_gltf2_msfs_kh_2024.blender.exp import gltf2_blender_gather_animation_samplers
+from io_scene_gltf2_msfs_kh_2024.blender.exp import (
+    gltf2_blender_gather_animation_samplers,
+)
 from io_scene_gltf2_msfs_kh_2024.blender.exp import (
     gltf2_blender_gather_animation_channel_target,
 )

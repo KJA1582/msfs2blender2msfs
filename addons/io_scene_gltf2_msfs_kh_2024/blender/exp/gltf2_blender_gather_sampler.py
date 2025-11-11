@@ -18,7 +18,10 @@ from io_scene_gltf2_msfs_kh_2024.blender.exp.gltf2_blender_gather_cache import c
 from io_scene_gltf2_msfs_kh_2024.io.exp.gltf2_io_user_extensions import (
     export_user_extensions,
 )
-from io_scene_gltf2_msfs_kh_2024.io.com.gltf2_io_constants import TextureFilter, TextureWrap
+from io_scene_gltf2_msfs_kh_2024.io.com.gltf2_io_constants import (
+    TextureFilter,
+    TextureWrap,
+)
 from io_scene_gltf2_msfs_kh_2024.blender.exp.gltf2_blender_get import (
     previous_node,
     previous_socket,

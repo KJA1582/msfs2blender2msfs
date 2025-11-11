@@ -17,7 +17,9 @@ from pathlib import Path
 
 from io_scene_gltf2_msfs_kh_2024.io.exp.gltf2_io_binary_data import BinaryData
 from ...io.com.gltf2_io_debug import print_console
-from io_scene_gltf2_msfs_kh_2024.io.com.gltf2_io_draco_compression_extension import dll_path
+from io_scene_gltf2_msfs_kh_2024.io.com.gltf2_io_draco_compression_extension import (
+    dll_path,
+)
 
 
 def encode_scene_primitives(scenes, export_settings):

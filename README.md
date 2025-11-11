@@ -6,17 +6,20 @@ Developed by [UX3D](https://www.ux3d.io/), Scurest and [Julien Duroure](http://j
 Introduction
 ------------
 
-Unofficial importer for MSFS/MSFS2024 glTF files.
+Unofficial importer for MSFS2024 glTF files.
 
 Installation
 ------------
 
-To install it — for example, when testing recent or upcoming changes — copy the `addons/io_scene_gltf2_msfs_kh` folder into the `scripts/addons/` directory of the Blender installation, then enable it under the *Add-ons* tab.
+To install it — for example, when testing recent or upcoming changes — copy the `addons/io_scene_gltf2_msfs_kh_2024` folder into the `scripts/addons/` directory of the Blender installation, then enable it under the *Add-ons* tab.
 
 Make sure to set the paths in the addon configuration to get automatically converted textures.
 Texture conversion only works for .DDS textures, .KTX2 are not supported.
 
 <img width="914" height="455" alt="{9A1AFA16-11AF-4C6E-9408-3C7D4DB32A22}" src="https://github.com/user-attachments/assets/1f1b7b0e-a9ee-4518-96b6-4c1eb3475c48" />
+
+Requires the official MSFS2024 exporter plugin to be installed and activated.
+Make sure to **only have the 2024 version active**. Activating both will lead to issues.
 
 Linting
 -------------------------

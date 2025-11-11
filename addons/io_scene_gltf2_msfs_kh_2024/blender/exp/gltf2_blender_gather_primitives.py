@@ -27,7 +27,9 @@ from .gltf2_blender_export_keys import (
 from io_scene_gltf2_msfs_kh_2024.blender.exp.gltf2_blender_gather_cache import cached
 from io_scene_gltf2_msfs_kh_2024.blender.exp import gltf2_blender_extract
 from io_scene_gltf2_msfs_kh_2024.blender.exp import gltf2_blender_gather_accessors
-from io_scene_gltf2_msfs_kh_2024.blender.exp import gltf2_blender_gather_primitive_attributes
+from io_scene_gltf2_msfs_kh_2024.blender.exp import (
+    gltf2_blender_gather_primitive_attributes,
+)
 from io_scene_gltf2_msfs_kh_2024.blender.exp import gltf2_blender_gather_materials
 
 from io_scene_gltf2_msfs_kh_2024.io.com import gltf2_io
