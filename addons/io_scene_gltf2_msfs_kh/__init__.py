@@ -18,7 +18,7 @@ bl_info = {
     "version": (2, 0, 0),
     "blender": (3, 6, 0),
     "location": "File > Import-Export",
-    "description": "Import-Export as glTF 2.0 for MSFS/MSFS2024",
+    "description": "Import-Export as glTF 2.0 for MSFS",
     "warning": "",
     "doc_url": "{BLENDER_MANUAL_URL}/addons/import_export/scene_gltf2.html",
     "tracker_url": "https://github.com/KJA1582/msfs2blender2msfs/issues",
@@ -1070,7 +1070,7 @@ class ExportMSFSGLTF2(bpy.types.Operator, ExportGLTF2_Base, ExportHelper):
     """Export scene as glTF 2.0 file for MSFS"""
 
     bl_idname = "export_scene.gltf_msfs"
-    bl_label = "Export glTF 2.0 for MSFS/MSFS2024"
+    bl_label = "Export glTF 2.0 for MSFS"
 
     filename_ext = ""
 
@@ -1079,7 +1079,7 @@ class ExportMSFSGLTF2(bpy.types.Operator, ExportGLTF2_Base, ExportHelper):
 
 def menu_func_export(self, context):
     self.layout.operator(
-        ExportMSFSGLTF2.bl_idname, text="glTF 2.0 for MSFS/MSFS2024 (.glb/.gltf)"
+        ExportMSFSGLTF2.bl_idname, text="glTF 2.0 for MSFS (.glb/.gltf)"
     )
 
 
@@ -1087,7 +1087,7 @@ class ImportMSFSGLTF2(Operator, ImportHelper):
     """Load a glTF 2.0 file for MSFS"""
 
     bl_idname = "import_scene.gltf_msfs"
-    bl_label = "Import glTF 2.0 for MSFS/MSFS2024"
+    bl_label = "Import glTF 2.0 for MSFS"
     bl_options = {"REGISTER", "UNDO"}
 
     filter_glob: StringProperty(default="*.glb;*.gltf", options={"HIDDEN"})
@@ -1280,14 +1280,6 @@ class ImporterExporterPreferences(AddonPreferences):
         subtype="DIR_PATH",
     )
 
-    flight_sim_dir_2024: StringProperty(
-        name="Folder path",
-        description="Absolute path to the Flight Simulator 2024 installation "
-        "(where your Community and Official folders are)",
-        default="",
-        subtype="DIR_PATH",
-    )
-
     def draw(self, context):
         layout = self.layout
         box = layout.box()
@@ -1336,7 +1328,7 @@ class ImporterExporterPreferences(AddonPreferences):
         row.prop(self, "flight_sim_dir", text="Path to Flight Simulator (root level)")
         flightsim_path = pathlib.Path(self.flight_sim_dir)
         if (
-            (self.flight_sim_dir == "" and self.flight_sim_dir_2024 == "")
+            self.flight_sim_dir
             or not flightsim_path.exists()
             or not flightsim_path.is_dir()
         ):
@@ -1346,30 +1338,10 @@ class ImporterExporterPreferences(AddonPreferences):
                 icon="ERROR",
             )
 
-        # Flight simulator installation directory
-        box = layout.box()
-        row = box.row()
-        row.prop(
-            self,
-            "flight_sim_dir_2024",
-            text="Path to Flight Simulator 2024 (root level)",
-        )
-        flightsim_path = pathlib.Path(self.flight_sim_dir_2024)
-        if (
-            (self.flight_sim_dir == "" and self.flight_sim_dir_2024 == "")
-            or not flightsim_path.exists()
-            or not flightsim_path.is_dir()
-        ):
-            row = box.row()
-            row.label(
-                text="No valid Flight Simulator 2024 path entered. Texture import is disabled",
-                icon="ERROR",
-            )
-
 
 def menu_func_import(self, context):
     self.layout.operator(
-        ImportMSFSGLTF2.bl_idname, text="glTF 2.0 for MSFS/MSFS2024 (.glb/.gltf)"
+        ImportMSFSGLTF2.bl_idname, text="glTF 2.0 for MSFS (.glb/.gltf)"
     )
 
 
