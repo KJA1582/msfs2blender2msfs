@@ -155,7 +155,6 @@ def textures_allowed(gltf):
     texconv_path = pathlib.Path(gltf.addon_settings.texconv_file)
     texture_output_path = pathlib.Path(gltf.addon_settings.texture_output_dir)
     flight_sim_path = pathlib.Path(gltf.addon_settings.flight_sim_dir)
-    flight_sim_path_2024 = pathlib.Path(gltf.addon_settings.flight_sim_dir_2024)
     if gltf.addon_settings.texconv_file == "" or not texconv_path.exists():
         return False
     if (
@@ -170,12 +169,6 @@ def textures_allowed(gltf):
         or not flight_sim_path.is_dir()
     ):
         return False
-    if (
-        gltf.addon_settings.flight_sim_dir_2024 == ""
-        or not flight_sim_path_2024.exists()
-        or not flight_sim_path_2024.is_dir()
-    ):
-        return False
     return True
 
 
@@ -186,7 +179,6 @@ def convert_dds(gltf, image):
         dds_file = local_texture_dir / image.uri
         if (
             gltf.addon_settings.flight_sim_dir in import_path
-            or gltf.addon_settings.flight_sim_dir_2024 in import_path
             or gltf.import_settings["include_sim_textures"]
         ):  # we are importing from somewhere in the flight sim directory, or the user specified to include flight sim textures
             if not dds_file.exists():
@@ -273,13 +265,8 @@ def get_texture_paths(gltf):
     else:
         gltf.texture_path_cache = []
         directory = pathlib.Path(gltf.addon_settings.flight_sim_dir)
-        directory_2024 = pathlib.Path(gltf.addon_settings.flight_sim_dir_2024)
         if directory is not None:
             for root, _, files in os.walk(directory):
-                for file in files:
-                    gltf.texture_path_cache.append((root, file))
-        if directory_2024 is not None:
-            for root, _, files in os.walk(directory_2024):
                 for file in files:
                     gltf.texture_path_cache.append((root, file))
         return gltf.texture_path_cache
