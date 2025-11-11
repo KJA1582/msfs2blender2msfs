@@ -118,7 +118,7 @@ class BlenderMaterial:
                 elif material_code == "Porthole":
                     material_type = "msfs_porthole"
                 elif material_code == "GeoDecalFrosted":
-                    material_type = "msfs_geo_decal"
+                    material_type = "msfs_geo_decal_frosted"
                 else:
                     raise Exception("Unknown ASOBO_material_code")
         if extensions is not None:
