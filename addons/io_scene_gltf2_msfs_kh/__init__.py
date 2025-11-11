@@ -1328,7 +1328,7 @@ class ImporterExporterPreferences(AddonPreferences):
         row.prop(self, "flight_sim_dir", text="Path to Flight Simulator (root level)")
         flightsim_path = pathlib.Path(self.flight_sim_dir)
         if (
-            self.flight_sim_dir
+            self.flight_sim_dir == ""
             or not flightsim_path.exists()
             or not flightsim_path.is_dir()
         ):
