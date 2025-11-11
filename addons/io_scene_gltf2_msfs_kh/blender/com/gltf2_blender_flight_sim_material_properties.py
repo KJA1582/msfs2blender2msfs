@@ -770,7 +770,7 @@ def update_material(self, context):
         self.msfs_show_dirt_texture = False
         self.msfs_show_height_map_texture = False
 
-    elif self.msfs_material_type == "msfs_env_occluder":  # Environment Occluder
+    elif self.msfs_material_type == "msfs_environment_occluder":  # Environment Occluder
         # Properties
         self.msfs_show_colors = True
         self.msfs_show_emissive_color = False
@@ -916,7 +916,7 @@ class msfs_material_properties(PropertyGroup):
             ("msfs_invisible", "MSFS Invisible", ""),
             ("msfs_fake_terrain", "MSFS Fake Terrain", ""),
             ("msfs_fresnel", "MSFS Fresnel", ""),
-            ("msfs_env_occluder", "MSFS Environment Occluder", ""),
+            ("msfs_environment_occluder", "MSFS Environment Occluder", ""),
         ),
         default=msfs_material_default_values.msfs_material_type,
         update=update_material,
