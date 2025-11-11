@@ -132,7 +132,7 @@ class BlenderMaterial:
             ):  # glass has two material types
                 material_type = "msfs_glass"
             elif "ASOBO_material_blend_gbuffer" in extensions:
-                material_type = "msfs_decal"
+                material_type = "msfs_geo_decal"
             elif "ASOBO_material_clear_coat" in extensions:
                 material_type = "msfs_clearcoat"
             elif "ASOBO_material_environment_occluder" in extensions:
