@@ -16,7 +16,7 @@ To install it — for example, when testing recent or upcoming changes — copy 
 Make sure to set the paths in the addon configuration to get automatically converted textures.
 Texture conversion only works for .DDS textures, .KTX2 are not supported.
 
-<img width="914" height="455" alt="{9A1AFA16-11AF-4C6E-9408-3C7D4DB32A22}" src="https://github.com/user-attachments/assets/1f1b7b0e-a9ee-4518-96b6-4c1eb3475c48" />
+<img width="1287" height="412" alt="{504F7242-11DD-4556-BB06-F003268C8B62}" src="https://github.com/user-attachments/assets/ef4f119c-a880-445b-98f8-716b7bd9752e" />
 
 Requires the official MSFS2024 exporter plugin to be installed and activated.
 Make sure to **only have the 2024 version active**. Activating both will lead to issues.
