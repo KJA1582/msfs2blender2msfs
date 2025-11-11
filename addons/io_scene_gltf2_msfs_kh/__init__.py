@@ -15,7 +15,7 @@
 bl_info = {
     "name": "Microsoft Flight Simulator: glTF Import",
     "author": "pepperoni505, Julien Duroure, Scurest, Norbert Nopper, Urs Hanselmann, Moritz Becher, Benjamin Schmithüsen, Jim Eckerlein, Kilian Hofmann, and many external contributors",
-    "version": (2, 0, 0),
+    "version": (2, 1, 0),
     "blender": (3, 6, 0),
     "location": "File > Import-Export",
     "description": "Import-Export as glTF 2.0 for MSFS",
