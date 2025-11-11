@@ -142,7 +142,7 @@ class BlenderMaterial:
             elif "ASOBO_material_fresnel_fade" in extensions:
                 material_type = "msfs_fresnel"
             elif "ASOBO_material_parallax_window" in extensions:
-                material_type = "msfs_parallax"
+                material_type = "msfs_parallax_window"
             elif "ASOBO_material_invisible" in extensions:
                 material_type = "msfs_invisible"
 
