@@ -419,13 +419,25 @@ def do_primitives(gltf, mesh_idx, skin_idx, mesh, ob):
                 w0, w1, w2, w3 = ws[vi]
                 j0, j1, j2, j3 = js[vi]
                 if w0 != 0:
-                    vgs[j0].add((vi,), w0, "REPLACE")
+                    try:
+                        vgs[j0].add((vi,), w0, "REPLACE")
+                    except:
+                        pass
                 if w1 != 0:
-                    vgs[j1].add((vi,), w1, "REPLACE")
+                    try:
+                        vgs[j1].add((vi,), w1, "REPLACE")
+                    except:
+                        pass
                 if w2 != 0:
-                    vgs[j2].add((vi,), w2, "REPLACE")
+                    try:
+                        vgs[j2].add((vi,), w2, "REPLACE")
+                    except:
+                        pass
                 if w3 != 0:
-                    vgs[j3].add((vi,), w3, "REPLACE")
+                    try:
+                        vgs[j3].add((vi,), w3, "REPLACE")
+                    except:
+                        pass
 
     # Shapekeys
     if num_shapekeys:

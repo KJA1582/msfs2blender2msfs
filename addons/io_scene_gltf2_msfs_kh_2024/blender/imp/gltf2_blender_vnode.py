@@ -160,7 +160,7 @@ def mark_bones_and_armas(gltf):
     """
     for skin in gltf.data.skins or []:
         descendants = list(skin.joints)
-        if skin.skeleton is not None:
+        if skin.skeleton is not None and skin.skeleton > 0:
             descendants.append(skin.skeleton)
         arma_id = deepest_common_ancestor(gltf, descendants)
 
