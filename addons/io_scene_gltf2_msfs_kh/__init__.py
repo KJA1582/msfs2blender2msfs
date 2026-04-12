@@ -1363,12 +1363,10 @@ classes = (
 )
 
 from io_scene_gltf2_msfs_kh.blender.com import (
-    gltf2_blender_flight_sim_material_ui,
     gltf2_blender_flight_sim_material_properties,
 )
 
 modules = (
-    gltf2_blender_flight_sim_material_ui,
     gltf2_blender_flight_sim_material_properties,
 )
 
