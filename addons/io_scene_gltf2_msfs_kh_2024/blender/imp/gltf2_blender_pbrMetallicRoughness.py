@@ -23,6 +23,7 @@ from .gltf2_blender_KHR_materials_clearcoat import (
     clearcoat_normal,
 )
 from ..com import gltf2_blender_flight_sim_material_utilities as utilities
+from ..com.gltf2_blender_flight_sim_material_utilities import _socket
 
 
 class MaterialHelper:
@@ -82,10 +83,14 @@ def pbr_metallic_roughness(mh: MaterialHelper):
         settings_node.location = 40, -370
         settings_node.width = 180
 
+    coat_weight = _socket(pbr_node, "Coat Weight", "Clearcoat")
+    coat_roughness = _socket(pbr_node, "Coat Roughness", "Clearcoat Roughness")
+    coat_normal = _socket(pbr_node, "Coat Normal", "Clearcoat Normal")
+
     emission(
         mh,
         location=locs["emission"],
-        color_socket=pbr_node.inputs["Emission"],
+        color_socket=_socket(pbr_node, "Emission Color", "Emission"),
         strength_socket=pbr_node.inputs["Emission Strength"],
     )
 
@@ -119,19 +124,19 @@ def pbr_metallic_roughness(mh: MaterialHelper):
     clearcoat(
         mh,
         location=locs["clearcoat"],
-        clearcoat_socket=pbr_node.inputs["Clearcoat"],
+        clearcoat_socket=coat_weight,
     )
 
     clearcoat_roughness(
         mh,
         location=locs["clearcoat_roughness"],
-        roughness_socket=pbr_node.inputs["Clearcoat Roughness"],
+        roughness_socket=coat_roughness,
     )
 
     clearcoat_normal(
         mh,
         location=locs["clearcoat_normal"],
-        normal_socket=pbr_node.inputs["Clearcoat Normal"],
+        normal_socket=coat_normal,
     )
 
     if settings_node is not None:
@@ -145,8 +150,8 @@ def pbr_metallic_roughness(mh: MaterialHelper):
     dirt(
         mh,
         location=locs["clearcoat"],
-        clearcoat_socket=pbr_node.inputs["Clearcoat"],
-        roughness_socket=pbr_node.inputs["Clearcoat Roughness"],
+        clearcoat_socket=coat_weight,
+        roughness_socket=coat_roughness,
     )
 
     # do blend mask last
@@ -995,17 +1000,17 @@ def make_settings_node(mh):
 
 
 def get_settings_group():
-    gltf_node_group_name = get_gltf_node_name()
-    if gltf_node_group_name in bpy.data.node_groups:
-        gltf_node_group = bpy.data.node_groups[gltf_node_group_name]
-    else:
-        # Create a new node group
-        gltf_node_group = bpy.data.node_groups.new(
-            gltf_node_group_name, "ShaderNodeTree"
-        )
-        gltf_node_group.inputs.new("NodeSocketFloat", "Occlusion")
-        gltf_node_group.inputs.new("NodeSocketFloat", "Wetness AO")
-        gltf_node_group.nodes.new("NodeGroupOutput")
-        gltf_node_group_input = gltf_node_group.nodes.new("NodeGroupInput")
-        gltf_node_group_input.location = -200, 0
-    return gltf_node_group
+    name = get_gltf_node_name()
+    if name in bpy.data.node_groups:
+        return bpy.data.node_groups[name]
+    group = bpy.data.node_groups.new(name, "ShaderNodeTree")
+    group.interface.new_socket(
+        name="Occlusion", in_out="INPUT", socket_type="NodeSocketFloat"
+    )
+    group.interface.new_socket(
+        name="Wetness AO", in_out="INPUT", socket_type="NodeSocketFloat"
+    )
+    group.nodes.new("NodeGroupOutput")
+    group_input = group.nodes.new("NodeGroupInput")
+    group_input.location = -200, 0
+    return group

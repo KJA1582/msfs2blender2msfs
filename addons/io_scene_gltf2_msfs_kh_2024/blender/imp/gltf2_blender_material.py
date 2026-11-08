@@ -72,13 +72,16 @@ class BlenderMaterial:
     @staticmethod
     def set_alpha_mode(pymaterial, mat):
         alpha_mode = pymaterial.alpha_mode
-        if alpha_mode == "BLEND":
-            mat.blend_method = "BLEND"
-        elif alpha_mode == "MASK":
-            mat.blend_method = "CLIP"
-            alpha_cutoff = pymaterial.alpha_cutoff
-            alpha_cutoff = alpha_cutoff if alpha_cutoff is not None else 0.5
-            mat.alpha_threshold = alpha_cutoff
+        if hasattr(mat, "surface_render_method"):  # Blender 4.2+
+            if alpha_mode == "BLEND":
+                mat.surface_render_method = "BLENDED"
+        else:
+            if alpha_mode == "BLEND":
+                mat.blend_method = "BLEND"
+            elif alpha_mode == "MASK":
+                mat.blend_method = "CLIP"
+                cutoff = pymaterial.alpha_cutoff
+                mat.alpha_threshold = cutoff if cutoff is not None else 0.5
 
         if alpha_mode is not None:
             mat.msfs_alpha_mode = alpha_mode

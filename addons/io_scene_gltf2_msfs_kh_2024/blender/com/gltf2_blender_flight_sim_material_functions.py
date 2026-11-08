@@ -17,6 +17,7 @@ import numpy as np
 from bpy.types import Material
 from ..com.gltf2_blender_material_helpers import get_gltf_node_name
 from . import gltf2_blender_flight_sim_material_utilities as utilities
+from .gltf2_blender_flight_sim_material_utilities import _socket
 
 
 ### Material Creation
@@ -741,15 +742,17 @@ def update_emissive_texture(self, context):
         bsdf_node = utilities.get_bsdf_node(self)  # Try finding the BSDF node
 
         if bsdf_node is not None:  # maybe recreate the material in this case?
+            emission_socket = _socket(bsdf_node, "Emission Color", "Emission")
+
             # Clear Emission
-            utilities.clear_socket(self, bsdf_node.inputs["Emission"])
+            utilities.clear_socket(self, emission_socket)
 
             locs = utilities.calc_locations(self)
 
             emission(
                 self,
                 location=locs["emission"],
-                color_socket=bsdf_node.inputs["Emission"],
+                color_socket=emission_socket,
             )
 
 
@@ -840,17 +843,20 @@ def update_dirt_texture(self, context):
         bsdf_node = utilities.get_bsdf_node(self)  # Try finding the BSDF node
 
         if bsdf_node is not None:  # maybe recreate the material in this case?
+            cc = _socket(bsdf_node, "Coat Weight", "Clearcoat")
+            cc_rough = _socket(bsdf_node, "Coat Roughness", "Clearcoat Roughness")
+
             # Clear Clearcoat and Clearcoat Roughness
-            utilities.clear_socket(self, bsdf_node.inputs["Clearcoat"])
-            utilities.clear_socket(self, bsdf_node.inputs["Clearcoat Roughness"])
+            utilities.clear_socket(self, cc)
+            utilities.clear_socket(self, cc_rough)
 
             locs = utilities.calc_locations(self)
 
             dirt(
                 self,
                 location=locs["clearcoat"],
-                clearcoat_socket=bsdf_node.inputs["Clearcoat"],
-                roughness_socket=bsdf_node.inputs["Clearcoat Roughness"],
+                clearcoat_socket=cc,
+                roughness_socket=cc_rough,
             )
 
 

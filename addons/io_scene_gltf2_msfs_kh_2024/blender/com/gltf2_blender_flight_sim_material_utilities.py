@@ -17,6 +17,16 @@ from bpy.types import Material
 from ..com.gltf2_blender_material_helpers import get_gltf_node_name
 
 
+def _socket(node, *names):
+    """Return the first input found among names (handles Blender 3.x vs 4.x)."""
+    if node is None:
+        return None
+    for name in names:
+        if name in node.inputs:
+            return node.inputs[name]
+    return None
+
+
 def check_if_is_linked_to_active_output(shader_socket):
     """
     Locates the node that is connected to the material output
@@ -167,7 +177,7 @@ def get_socket(blender_material: bpy.types.Material, name: str):
             if inputs:
                 return inputs[0]
             # If a dedicated Emission node was not found, fall back to the Principled BSDF Emission socket.
-            name = "Emission"
+            name = "Emission Color" if bpy.app.version >= (4, 0, 0) else "Emission"
             type = bpy.types.ShaderNodeBsdfPrincipled
         elif name == "Background":
             type = bpy.types.ShaderNodeBackground
@@ -301,20 +311,20 @@ def make_settings_node(mat):
 
 
 def get_settings_group():
-    gltf_node_group_name = get_gltf_node_name()
-    if gltf_node_group_name in bpy.data.node_groups:
-        gltf_node_group = bpy.data.node_groups[gltf_node_group_name]
-    else:
-        # Create a new node group
-        gltf_node_group = bpy.data.node_groups.new(
-            gltf_node_group_name, "ShaderNodeTree"
-        )
-        gltf_node_group.inputs.new("NodeSocketFloat", "Occlusion")
-        gltf_node_group.inputs.new("NodeSocketFloat", "Wetness AO")
-        gltf_node_group.nodes.new("NodeGroupOutput")
-        gltf_node_group_input = gltf_node_group.nodes.new("NodeGroupInput")
-        gltf_node_group_input.location = -200, 0
-    return gltf_node_group
+    name = get_gltf_node_name()
+    if name in bpy.data.node_groups:
+        return bpy.data.node_groups[name]
+    group = bpy.data.node_groups.new(name, "ShaderNodeTree")
+    group.interface.new_socket(
+        name="Occlusion", in_out="INPUT", socket_type="NodeSocketFloat"
+    )
+    group.interface.new_socket(
+        name="Wetness AO", in_out="INPUT", socket_type="NodeSocketFloat"
+    )
+    group.nodes.new("NodeGroupOutput")
+    group_input = group.nodes.new("NodeGroupInput")
+    group_input.location = -200, 0
+    return group
 
 
 def is_detail_mix(node):
