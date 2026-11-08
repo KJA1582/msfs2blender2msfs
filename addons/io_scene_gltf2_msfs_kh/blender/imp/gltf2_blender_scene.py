@@ -35,8 +35,16 @@ class BlenderScene:
             bpy.context.collection.name in bpy.data.collections
         ):  # avoid master collection
             gltf.blender_active_collection = bpy.context.collection.name
-        if scene.render.engine not in ["CYCLES", "BLENDER_EEVEE"]:
-            scene.render.engine = "BLENDER_EEVEE"
+        if scene.render.engine not in [
+            "CYCLES",
+            "BLENDER_EEVEE",
+            "BLENDER_EEVEE_NEXT",
+        ]:
+            scene.render.engine = (
+                "BLENDER_EEVEE_NEXT"
+                if bpy.app.version >= (4, 2, 0)
+                else "BLENDER_EEVEE"
+            )
 
         if gltf.data.scene is not None:
             pyscene = gltf.data.scenes[gltf.data.scene]

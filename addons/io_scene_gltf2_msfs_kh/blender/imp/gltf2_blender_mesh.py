@@ -371,11 +371,9 @@ def do_primitives(gltf, mesh_idx, skin_idx, mesh, ob):
 
     mesh.polygons.add(num_faces)
 
-    # All polys are tris
+    # All polys are tris. loop_total is read-only in 4.x
     loop_starts = np.arange(0, 3 * num_faces, step=3)
-    loop_totals = np.full(num_faces, 3)
     mesh.polygons.foreach_set("loop_start", loop_starts)
-    mesh.polygons.foreach_set("loop_total", loop_totals)
 
     for uv_i in range(num_uvs):
         name = "UVMap" if uv_i == 0 else "UVMap.%03d" % uv_i
@@ -500,16 +498,11 @@ def do_primitives(gltf, mesh_idx, skin_idx, mesh, ob):
     set_poly_smoothing(gltf, pymesh, mesh, vert_normals, loop_vidxs, is_asobo_optimized)
 
     mesh.validate()
-    has_loose_edges = (
-        len(edge_vidxs) != 0
-    )  # need to calc_loose_edges for them to show up
-    mesh.update(calc_edges_loose=has_loose_edges)
+    mesh.update()
 
     if has_normals:
-        mesh.create_normals_split()
+        # create_normals_split and use_auto_smooth were removed in 4.1
         mesh.normals_split_custom_set_from_vertices(vert_normals)
-        if not is_asobo_optimized:  # doesn't seem to properly work for MSFS imports
-            mesh.use_auto_smooth = True
 
 
 def points_edges_tris(mode, indices, is_asobo_optimized):
@@ -731,7 +724,7 @@ def set_poly_smoothing(
     # Try to guess which polys should be flat based on the fact that all the
     # loop normals for a flat poly are = the poly's normal.
 
-    poly_smooths = np.empty(num_polys, dtype=np.bool)
+    poly_smooths = np.empty(num_polys, dtype=bool)
 
     poly_normals = np.empty(num_polys * 3, dtype=np.float32)
     mesh.polygons.foreach_get("normal", poly_normals)
